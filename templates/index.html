@@ -1,25 +1,30 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Task Master</title>
+<title>Young Scrapers</title>
 {% endblock %}
 
 {% block body %}
 <div class="content">
-    <h1 style="text-align: center">Task Master</h1>
+    <h1 style="text-align: center">Young Scrapers</h1>
     {% if tasks|length < 1 %}
-    <h4 style="text-align: center">There are no tasks. Create one below!</h4>
+    <h4 style="text-align: center">There are no Books. Create one below!</h4>
     {% else %}
     <table>
         <tr>
-            <th>Task</th>
-            <th>Added</th>
+            <th>Book</th>
+            <th>Price</th>
+            <th>Availability</th>
             <th>Actions</th>
+            
         </tr>
         {% for task in tasks %}
             <tr>
+                
                 <td>{{ task.content }}</td>
-                <td>{{ task.date_created.date() }}</td>
+                <td>{{ task.price }}</td>
+                <td>{{ task.availability }}</td>
+                <!-- <td>{{ task.date_created.date() }}</td> -->
                 <td>
                     <a href="/delete/{{task.id}}">Delete</a>
                     <br>
@@ -33,7 +38,7 @@
     <div class="form">
         <form action="/" method="POST">
             <input type="text" name="content" id="content">
-            <input type="submit" value="Add Task">
+            <input type="submit" value="Add Book">
         </form>
     </div>
 </div>
