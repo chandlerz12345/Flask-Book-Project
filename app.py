@@ -20,7 +20,9 @@ def scrape():
 def showBooks():
     # print(test.all_books)
     book_1 = test.all_books[0]
-    return render_template('index.html', book=book_1)
+    print(book_1)
+    return render_template('index.html', book_1=book_1)
+    
     
     
     

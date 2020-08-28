@@ -114,6 +114,12 @@ class Bookscrape:
             self.save_json()
             self.save_s3.save2s3()
         # sys.exit(0)
+        
+    def read(self):
+        with open('app.json') as json_file:
+            data = json.load(json_file)
+            print (data[1])
+        
 
 class AWSConnect:
         def __init__(self):
@@ -121,3 +127,6 @@ class AWSConnect:
         def save2s3(self):
             self.s3.upload_file('app.json', 'lmtd-team-delta','AWSave.json')
            
+
+test = Bookscrape()
+test.read()
