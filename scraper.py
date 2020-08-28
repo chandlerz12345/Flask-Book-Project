@@ -136,8 +136,8 @@ class AWSConnect:
 
 
 
-test = Bookscrape()
+# test = Bookscrape()
 # test.scrape_books()
 
-test.search()
-test.quit()
+# test.search()
+# test.quit()
