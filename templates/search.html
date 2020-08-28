@@ -1,0 +1,34 @@
+
+
+
+{% extends 'base.html' %}
+
+{% block head %}
+<title>items</title>
+{% endblock %}
+
+{% block body %}
+
+
+
+
+    {%for x in content%}
+       {%if x['title'] == title %}
+           <p>The Book you searched for was:  {%print x['title']%}</p>
+           <p>The current price is:  {%print x['price']%}</p>
+           <p>The Book is  {%print x['availability']%}</p> 
+      
+        {% endif %}
+    {% endfor %}
+
+    <!-- <div class="form">
+        <form action="/" method="POST">
+            <input type="text" name="to_search" id="to_search">
+            <input type="submit" value="Add Task">
+        </form>
+    </div> -->
+
+
+    
+<!-- <p>{{content}}</p> -->
+{% endblock %}

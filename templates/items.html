@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>items</title>
+{% endblock %}
+
+{% block body %}
+ 
+
+<div class="content"> 
+
+<tr>
+    <th>Title</th>
+    <th>Price</th>
+    <th>Availability</th>
+    <br>
+</tr>
+
+
+
+    {% for x in content%}
+    <tr>
+        <td>{% print(x['title'])  %}</td>
+        <td>{% print(x['price']) %}</td>
+        <td>{%print(x['availability'])%}</td>
+        <br>
+
+
+    </tr>
+    <!-- <br>
+        <span>{%print(x['title'])%}</span>
+        <br>
+        <span>{%print(x['price'])%}</span>
+        <br>
+        <span>{%print(x['availability'])%}</span> -->
+    {% endfor %}
+</div>
+<!-- <p>{{content}}</p> -->
+{% endblock %}

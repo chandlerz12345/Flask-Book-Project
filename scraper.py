@@ -10,6 +10,8 @@ class Bookscrape:
         self.save_s3 = AWSConnect()
         self.base_url = "http://books.toscrape.com/catalogue/page-{}.html"
         self.all_books = []
+        self.read()
+        
 
     def scrape_books(self):
 
@@ -37,13 +39,13 @@ class Bookscrape:
                 )
 
             # sleep(1)
-        return self.all_books
+        # self.read()
 
 
 
     def search(self):
         self.to_search = input("what is the title of the item you would like to search: ").lower()
-        for self.book in self.all_books:
+        for self.book in self.data:
             if self.book['title'] == self.to_search:
                 print(self.book['title'])
                 print(f"the price of the book if {self.book['price']}")
@@ -55,7 +57,7 @@ class Bookscrape:
     def delete(self):
         self.counter = 0
         self.to_search = input("what is the title of the item you would like to  delete: ").lower()
-        for self.book in self.all_books:
+        for self.book in self.data:
             if self.book['title'] == self.to_search:
                 self.book.clear()
                 print("the book listing has been removed")
@@ -68,12 +70,12 @@ class Bookscrape:
     def update_price(self):
         self.counter = 0
         self.search = input("what is the item would you like to update: ").lower() 
-        for self.book in self.all_books:
+        for self.book in self.data:
             if self.book['title'] == self.search:
                 print(f"the current price of the item is {self.book['price']}")
                 self.new_price = input("what is the new price of the item: ")
                 self.book['price'] = self.new_price
-                print (self.all_books[self.counter])
+                print (self.data[self.counter])
             else:
                 self.counter += 1
             
@@ -81,12 +83,12 @@ class Bookscrape:
     def update_title(self):
         self.counter = 0
         self.search = input("what is the item would you like to update: ").lower() 
-        for self.book in self.all_books:
+        for self.book in self.data:
             if self.book['title'] == self.search:
                 print(f"the current title of the item is {self.book['title']}")
                 self.new_title = input("what is the new title of the item: ")
                 self.book['title'] = self.new_title
-                print (self.all_books[self.counter])
+                print (self.data[self.counter])
             else:
                 self.counter += 1
 
@@ -94,39 +96,43 @@ class Bookscrape:
     def update_availabilty(self):
         self.counter = 0
         self.search = input("what is the item would you like to update: ").lower() 
-        for self.book in self.all_books:
+        for self.book in self.data:
             if self.book['title'] == self.search:
                 print(f"the current availability of the item is {self.book['availability']}")
                 self.new_availability = input("what is the new availability of the item: ")
                 self.book['availability'] = self.new_availability
-                print (self.all_books[self.counter])
+                print (self.data[self.counter])
             else:
                 self.counter += 1
 
 
     def save_json(self):
-        with open('app.json', "w") as fp:
-            json.dump(self.all_books, fp)
+        with open('saved_app.json', "w") as fp:
+            json.dump(self.data, fp)
 
     def quit(self):
-        choice = input("Would you like to save all changes (y/n): ")
-        if choice == 'y' or choice== 'Y':
-            self.save_json()
-            self.save_s3.save2s3()
+        self.save_json()
+        self.save_s3.save2s3()
         # sys.exit(0)
         
     def read(self):
         with open('app.json') as json_file:
-            data = json.load(json_file)
-            print (data[1])
+           self.data = json.load(json_file)
+           
         
 
 class AWSConnect:
         def __init__(self):
             self.s3 = boto3.client('s3')
         def save2s3(self):
-            self.s3.upload_file('app.json', 'lmtd-team-delta','AWSave.json')
+            self.s3.upload_file('saved_app.json', 'lmtd-team-delta','AWSave.json')
            
 
-test = Bookscrape()
-test.read()
+
+
+
+# test = Bookscrape()
+# test.scrape_books()
+# test.quit()
+# test.search()
+# test.quit()

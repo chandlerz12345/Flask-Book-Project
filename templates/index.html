@@ -1,47 +1,22 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Young Scrapers</title>
+<title>Task Master</title>
 {% endblock %}
 
 {% block body %}
-<div class="content">
-    <h1 style="text-align: center">Hello World</h1>
-    <!-- {% if books|length < 1 %}
-    <h4 style="text-align: center">There are no Books. Create one below!</h4>
-    {% else %} -->
-    <p>
-        Hello World
+<style>
+.first {
+    padding-top: 15rem;
+}
+.spacing{
+    margin: 2rem 2rem;
+}
+</style>
+<h1 style="text-align: center">LMTD YOUNG SCRAPPERS</h1>
 
-    </p>
-    <table>
-        <tr>
-            <th>Book</th>
-            <th>Price</th>
-            <th>Availability</th>
-            <th>Actions</th>
-            
-        </tr>
-        <!-- {% for book in books %} -->
-            <tr>
-                
-                <td>{{ book_1['title'] }}</td>
-                
-                <td>
-                    <a href="/delete/{{book.id}}">Delete</a>
-                    <br>
-                    <a href="/update/{{book.id}}">Update</a>
-                </td>
-            </tr>
-        <!-- {% endfor %} -->
-    </table>
-    <!-- {% endif %} -->
-
-    <div class="form">
-        <form action="/" method="POST">
-            <input type="text" name="content" id="content">
-            <input type="submit" value="Add Book">
-        </form>
-    </div>
-</div>
+<p class="first spacing" style = "text-align: center"> In order to scrape a site please vist the url: <b>"/scrape"</b></p>
+<p class = "spacing"style = "text-align: center"> In order to see item in our inventory: <b>"/items"</b></p>
+<p style = "text-align: center"> In order to save data to s3 bucket please visit url: <b>"/quit"</b></p>
+<p style = "text-align: center"> In order to search for a book please visit url: <b>"/search + title of book"</b></p>
 {% endblock %}
