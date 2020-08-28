@@ -12,6 +12,7 @@ class Bookscrape:
         self.all_books = []
         self.read()
         
+        
 
     def scrape_books(self):
 
@@ -40,6 +41,9 @@ class Bookscrape:
 
             # sleep(1)
         # self.read()
+        all_books = self.all_books
+        self.save_json(all_books)
+        self.read()
 
 
 
@@ -106,12 +110,13 @@ class Bookscrape:
                 self.counter += 1
 
 
-    def save_json(self):
-        with open('saved_app.json', "w") as fp:
-            json.dump(self.data, fp)
+    def save_json(self, all_books):
+        with open('app.json', "w") as fp:
+            json.dump(all_books, fp)
 
     def quit(self):
-        self.save_json()
+        all_books = self.data
+        self.save_json(all_books)
         self.save_s3.save2s3()
         # sys.exit(0)
         
@@ -125,14 +130,14 @@ class AWSConnect:
         def __init__(self):
             self.s3 = boto3.client('s3')
         def save2s3(self):
-            self.s3.upload_file('saved_app.json', 'lmtd-team-delta','AWSave.json')
+            self.s3.upload_file('app.json', 'lmtd-team-delta','AWSave.json')
            
 
 
 
 
-# test = Bookscrape()
+test = Bookscrape()
 # test.scrape_books()
-# test.quit()
-# test.search()
-# test.quit()
+
+test.search()
+test.quit()
