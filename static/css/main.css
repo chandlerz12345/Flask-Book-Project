@@ -9,7 +9,7 @@ body, html {
 }
 
 table, td, th {
-    border: 1px solid #aaa;
+    border: 1px solid white;
 }
 
 table {
@@ -33,3 +33,4 @@ td {
 #content {
     width: 70%;
 }
+

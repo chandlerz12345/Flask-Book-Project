@@ -5,14 +5,29 @@
 {% endblock %}
 
 {% block body %}
- 
+
+
+<style>
+body {background-color: rgb(97, 95, 95);}
+
+.table-head{
+    color: hotpink;
+    padding-right: 2rem;
+
+}
+.space-left{
+    padding-right: .5rem;
+    color: white;
+}
+
+</style>
 
 <div class="content"> 
 
 <tr>
-    <th>Title</th>
-    <th>Price</th>
-    <th>Availability</th>
+    <th><span class = "table-head"><b>Title</b></span></th>
+    <th><span class = "table-head"><b>Price</b></span></th>
+    <th><span class = "table-head"><b>Availability</b></span></th>
     <br>
 </tr>
 
@@ -20,9 +35,9 @@
 
     {% for x in content%}
     <tr>
-        <td>{% print(x['title'])  %}</td>
-        <td>{% print(x['price']) %}</td>
-        <td>{%print(x['availability'])%}</td>
+        <td><span class = "space-left">{% print(x['title'])  %}</span></td>
+        <td><span class = "space-left">{% print(x['price']) %}</span></td>
+        <td><span class = "space-left">{%print(x['availability'])%}</span></td>
         <br>
 
 
